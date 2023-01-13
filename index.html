@@ -1,0 +1,174 @@
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Flex Panels 😎</title>
+            </head>
+            <body>
+
+                <div class="panels">
+                    <div class="panel panel1">
+                        <p>hey</p>
+                        <p>let's</p>
+                        <p>dance</p>
+                    </div>
+                    <div class="panel panel2">
+                        <p>give</p>
+                        <p>take</p>
+                        <p>receive</p>
+                    </div>
+                    <div class="panel panel3">
+                        <p>Experience</p>
+                        <p>it</p>
+                        <p>Today</p>
+                    </div>
+                    <div class="panel panel4">
+                        <p>give</p>
+                        <p>all</p>
+                        <p>you can</p>
+                    </div>
+                    <div class="panel panel5">
+                        <p>life</p>
+                        <p>in</p>
+                        <p>motion</p>
+                    </div>
+                </div>
+
+                <style>
+                    body{
+                        margin: 0;
+                    }
+                    html{
+                        font-family: sans-serif;
+                        font-size: 35px;
+                        color: white;
+                        font-weight: bold;
+                    }
+                    .panels{
+                        display: flex;
+                        min-height: 100vh;
+                        overflow: hidden;
+                    }
+                
+                    .panel {
+                        background: #6B0F9C;
+                        box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+                        color: white;
+                        text-align: center;
+                        align-items: center;
+                        transition:
+                            font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+                            flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+                            background 0.2s;
+                        font-size: 20px;
+                        background-size: cover;
+                        background-position: center;
+                        flex: 1;
+                        justify-content: center;
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .panel1{ background-image: url("./Images/WhatsApp Image 2023-01-12 at 15.40.10.jpeg");  }
+                    .panel2{ background-image: url("./Images/WhatsApp\ Image\ 2023-01-12\ at\ 15.40.05.jpeg");  }
+                    .panel3{ background-image: url("./Images/WhatsApp\ Image\ 2023-01-12\ at\ 15.40.10\ \(2\).jpeg");  }
+                    .panel4{ background-image: url("./Images/WhatsApp\ Image\ 2023-01-12\ at\ 15.40.09.jpeg");  }
+                    .panel5{ background-image: url("./Images/WhatsApp\ Image\ 2023-01-12\ at\ 15.40.10\ \(1\).jpeg");  }
+                    
+                    /* flex */
+
+                    .panel > * {
+                        margin: 0;
+                        width: 100%;
+                        transition: transform 0.5s;
+                        flex: 1 0 auto;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    
+                    .panel p{
+                        text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+                        text-transform: uppercase;
+                        display: flex;
+                        align-items: center;
+                        flex: 1 0 auto;
+                        
+                    }
+
+                    .panel > *:first-child { 
+                        transform: translateY(-100%); 
+                    }
+                    .panel.open-active > *:first-child { 
+                        transform: translateY(0); 
+                        font-size: 60px; 
+                    }
+                    .panel > *:last-child {
+                        transform: translateY(100%); 
+                        }
+                    .panel.open-active > *:last-child { 
+                        transform: translateY(0);
+                        font-size: 50px;
+                    }
+                    .panel.open-active > *:nth-child(2) { 
+                        font-size: 60px; 
+                    }
+
+                    
+                    .panel.open{
+                        font-size: 30px;
+                        flex: 5;
+                    } 
+                    .panel p:nth-child(2) {
+                        font-size: 40px;
+                        transition: font-size 0.2s cubic-bezier(0.61,-0.19, 0.7,-0.11);
+                    }
+                    @media only screen and (max-width: 600px){
+                        .panel p {
+                            font-size: 15px;
+                            font-weight: 500;
+                        }
+                        .panel p:nth-child(2){
+                            font-size: 20px;
+                        }
+                        .panel.open-active > *:first-child { 
+                            font-size: 26px; 
+                        }
+                        .panel.open-active > *:nth-child(2) { 
+                        font-size: 26px; 
+                        }
+                        .panel.open-active > *:last-child {
+                            font-size: 26px;
+                        }
+                    }
+                    
+
+                </style>
+
+
+                <script>
+                    const panal = document.querySelectorAll(`.panel`);
+                    
+
+                    function addOpen(){
+                        console.log('hellow')
+                        this.classList.toggle(`open`);
+                    }
+
+                    function addActive(e){
+                        console.log(e.propertyName);
+                        if(e.propertyName.includes('flex')){
+                            this.classList.toggle(`open-active`);
+                        }
+                    }
+
+                    panal.forEach(panal => panal.addEventListener('transitionend', addActive));
+                    panal.forEach(panal => panal.addEventListener('click', addOpen));
+                    
+
+                </script>
+                
+            </body>
+            </html>
